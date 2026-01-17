@@ -24,10 +24,9 @@ export function Providers({ children }: { children: ReactNode }) {
           const session = await authClient.getSession();
           if (session.data?.user && typeof window !== "undefined") {
             const currentPath = window.location.pathname;
-            // Redirect if we're on an auth page or at the base URL (where better-auth redirects after sign-in)
+            // Redirect if we're on an auth page or at the base URL (fallback)
             if (currentPath.startsWith("/auth/") || currentPath === "/") {
-              // Use window.location for a hard redirect to ensure it works even if better-auth redirected server-side
-              window.location.href = "/dashboard";
+              router.replace("/dashboard"); // Use replace to avoid history issues
             }
           }
         } catch (error) {
