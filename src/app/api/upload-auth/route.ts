@@ -4,8 +4,8 @@ import { env } from "~/env";
 export async function GET() {
   try {
     const { token, expire, signature } = getUploadAuthParams({
-      privateKey: env.IMAGEKIT_PRIVATE_KEY as string,
-      publicKey: env.IMAGEKIT_PUBLIC_KEY as string,
+      privateKey: env.IMAGEKIT_PRIVATE_KEY,
+      publicKey: env.IMAGEKIT_PUBLIC_KEY,
       // expire: 30 * 60, // Optional: 30 minutes expiry (default is 1 hour)
     });
 
@@ -13,8 +13,8 @@ export async function GET() {
       token,
       expire,
       signature,
-      publicKey: env.IMAGEKIT_PUBLIC_KEY as string,
-      urlEndpoint: env.IMAGEKIT_URL_ENDPOINT as string,
+      publicKey: env.IMAGEKIT_PUBLIC_KEY,
+      urlEndpoint: env.IMAGEKIT_URL_ENDPOINT,
     });
   } catch (error) {
     console.error("Upload auth error:", error);
